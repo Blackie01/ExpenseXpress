@@ -10,8 +10,6 @@ const SnackBar: React.FC = () => {
   const status = useSelector((state: RootState) => state.snackBar.status);
   const display = useSelector((state: RootState) => state.snackBar.display);
 
-  console.log("checking", display, status, message);
-
   useEffect(() => {
     setTimeout(
       () =>
@@ -24,7 +22,7 @@ const SnackBar: React.FC = () => {
         ),
       3000
     );
-  }, [ display === true]);
+  }, [display === true]);
 
   return (
     <div
