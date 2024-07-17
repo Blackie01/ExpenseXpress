@@ -1,6 +1,9 @@
 ## Project Title
 ExpenseXpress - An expense tracker and invoice generator
 
+## Live Link
+https://expense-xpress.vercel.app/dashboard
+
 ## Table of Contents
 Introduction
 Prerequisites
