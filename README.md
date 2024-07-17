@@ -44,7 +44,7 @@ Follow these instructions to set up and run the application locally.
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-invoice.git
+git clone https://github.com/Blackie01/ExpenseXpress.git
 ```
 
 ## 2. Navigate to the project directory:
