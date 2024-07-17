@@ -60,7 +60,6 @@ npm install
 ## 4. Set Up Environment Variables
 Create a .env.local file in the root directory of the project and add the necessary environment variables. Below is an example of the variables you might need:
 
-env
 NEXT_PUBLIC_API_ENDPOINT=http://localhost:3000/api
 Ensure you replace the values with the appropriate settings for your environment.
 
@@ -68,7 +67,6 @@ Ensure you replace the values with the appropriate settings for your environment
 Start the development server with the following command:
 
 ```bash
-Copy code
 npm run dev
 ```
 
