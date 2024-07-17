@@ -28,8 +28,8 @@ const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
   const [date, setDate] = useState<any>();
   const [amount, setAmount] = useState<number | null>();
 
-  const handleEntryType = () => {
-    setEntryType(!entryType);
+  const handleEntryType = (value: boolean) => {
+    setEntryType(value);
     if (entryType == false) {
       setCategory("Income");
     } else {
@@ -128,7 +128,7 @@ const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
         </div>
         <div className="flex w-full">
           <div
-            onClick={handleEntryType}
+            onClick={() => handleEntryType(true)}
             className={`${
               entryType ? "bg-black text-white" : "bg-[#ebe8eb] text-black"
             } rounded-custom rounded-r-none py-2 px-4 transition-all duration-300 ease-in-out w-[50%] text-center`}
@@ -136,7 +136,7 @@ const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
             Income
           </div>
           <div
-            onClick={handleEntryType}
+            onClick={() => handleEntryType(false)}
             className={`${
               entryType ? "bg-[#ebe8eb] text-black " : "bg-black text-white"
             } rounded-custom rounded-l-none py-2 px-4 transition-all duration-300 ease-in-out w-[50%] text-center`}
