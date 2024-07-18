@@ -6,7 +6,6 @@ import DatePicker from "./DatePicker";
 import ActionButton from "./ActionButton";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
 import { setTransactionEntries } from "@/redux/transactionEntriesSlice";
 import { setSnackBar } from "@/redux/snackBarSlice";
 

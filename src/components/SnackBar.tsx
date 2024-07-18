@@ -28,7 +28,7 @@ const SnackBar: React.FC = () => {
     <div
       className={`${display ? "block" : "hidden"} ${
         status ? "border-[green] text-[green]" : "border-pink text-pink"
-      } text-semibold bg-white fixed top-[1rem] right-[1rem] border px-4 py-2 z-10 rounded-custom`}
+      } text-semibold bg-white fixed top-[1rem] right-[1rem] border px-4 py-2 z-50 bg-white rounded-custom`}
     >
       {message}
     </div>

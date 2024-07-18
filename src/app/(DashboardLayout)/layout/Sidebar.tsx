@@ -1,62 +1,3 @@
-// "use client";
-// import React from "react";
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-
-// interface MenuProps {
-//   name: string;
-//   url: string;
-// }
-
-// const menu: MenuProps[] = [
-//   {
-//     name: "Dashboard",
-//     url: "/dashboard",
-//   },
-//   {
-//     name: "Transactions",
-//     url: "/transactions",
-//   },
-//   {
-//     name: "Invoice",
-//     url: "/invoice",
-//   },
-// ];
-
-// const Sidebar: React.FC = () => {
-//   const pathname = usePathname();
-
-//   return (
-//     <section className="bg-[#FAF9FA] h-full py-4 flex flex-col gap-12">
-//       <div>
-//         <Link href={'/'}>
-//         <h3 className="text-black font-semibold px-6 text-[20px] max-[1382px]:text-[16px] max-[1107px]:px-2">
-//           ExpenseXpress
-//         </h3>
-//         </Link>
-
-//       </div>
-//       <div className="flex flex-col">
-//         {menu.map((menu, index) => (
-//           <Link
-//             href={menu.url}
-//             key={index}
-//             className={`px-6 max-[1107px]:px-2 py-4 cursor-pointer ${
-//               pathname === menu.url
-//                 ? "bg-white text-pink border-r-[2px] border-pink font-semibold"
-//                 : ""
-//             }`}
-//           >
-//             {menu.name}
-//           </Link>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Sidebar;
-
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
@@ -77,7 +18,7 @@ const menu: MenuProps[] = [
 
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
-  const username = useSelector((state: RootState) => state.auth.username)
+  const username = useSelector((state: RootState) => state.auth.username);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -92,7 +33,9 @@ const Sidebar: React.FC = () => {
           <span className="h-[2px] w-[15px] bg-black"></span>
           <span className="h-[2px] w-[10px] bg-black"></span>
         </button>
-        <h3 className="text-black font-semibold text-[18px] italic">ExpenseXpress</h3>
+        <h3 className="text-black font-semibold text-[18px] italic">
+          ExpenseXpress
+        </h3>
       </div>
 
       <div
@@ -128,10 +71,9 @@ const Sidebar: React.FC = () => {
             ))}
           </div>
           <div className="sm:hidden block absolute left-[1rem] bottom-[2rem]">
-          Hola, {username || 'user'}.
-        </div>
+            Hola, {username || "user"}.
+          </div>
         </section>
-       
       </div>
     </section>
   );
