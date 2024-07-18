@@ -75,12 +75,6 @@ const CreateInvoice = ({
   };
 
   useEffect(() => {
-    // if ((rate !== undefined) && (quantity !== undefined)) {
-    //     const multipliedAmount = rate * quantity
-    //     setAmount(multipliedAmount)
-    //     setSubtotal(multipliedAmount)
-    // }
-
     const calcAmount = () => {
       const quantityValue = Number(quantity) || 1;
       const multipliedAmount = quantityValue * Number(rate);
