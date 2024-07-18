@@ -1,22 +1,25 @@
 ## Project Title
 ExpenseXpress - An expense tracker and invoice generator
 
+## Live Link
+https://expense-xpress.vercel.app/dashboard
+
 ## Table of Contents
-Introduction
-Prerequisites
-Getting Started
+* Introduction
+* Prerequisites
+* Getting Started
 1. Clone the Repository
 2. Install Dependencies
 3. Set Up Environment Variables
 4. Run the Application
-Application Structure
-Features
-Expense and Income Tracking
-Invoice Generation
-Running Tests
-Troubleshooting
-Contributing
-License
+* Application Structure
+* Features
+* Expense and Income Tracking
+* Invoice Generation
+* Running Tests
+* Troubleshooting
+* Contributing
+* License
 
 ## Introduction
 This application is an expense tracker and invoice generation tool that allows users to input their expenses and income, categorize them, and generate invoices when needed. It is built using Next.js (TypeScript), Tailwind CSS, and Redux.
@@ -41,7 +44,7 @@ Follow these instructions to set up and run the application locally.
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-invoice.git
+git clone https://github.com/Blackie01/ExpenseXpress.git
 ```
 
 ## 2. Navigate to the project directory:
