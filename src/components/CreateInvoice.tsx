@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
 import CustomInput from "./CustomInput";
 import DatePicker from "./DatePicker";
@@ -74,6 +74,22 @@ const CreateInvoice = ({
     setRate(value);
   };
 
+  useEffect(() => {
+    // if ((rate !== undefined) && (quantity !== undefined)) {
+    //     const multipliedAmount = rate * quantity
+    //     setAmount(multipliedAmount)
+    //     setSubtotal(multipliedAmount)
+    // }
+
+    const calcAmount = () => {
+      const quantityValue = Number(quantity) || 1;
+      const multipliedAmount = quantityValue * Number(rate);
+      setAmount(multipliedAmount);
+      setSubtotal(multipliedAmount);
+    };
+    calcAmount();
+  }, [rate, quantity]);
+
   const handleAmount = (value: number) => {
     setAmount(value);
   };
@@ -98,17 +114,38 @@ const CreateInvoice = ({
     setTotal(value);
   };
 
-  const handleGenerateInvoice = () => {
+  useEffect(() => {
+    const calculateGrandTotal = () => {
+      const subtotalValue = Number(subtotal) || 0;
+      const shippingValue = Number(shipping) || 0;
+      const taxValue = Number(tax) || 0;
+
+      const grandTotal = subtotalValue + shippingValue + taxValue;
+      setTotal(grandTotal);
+    };
+
+    calculateGrandTotal();
+  }, [subtotal, shipping, tax]);
+
+  const handleGenerateInvoice = (e: any) => {
+    e.preventDefault();
     const targetElement: any = document.getElementById("target");
     const pdf = new jsPDF("portrait");
 
     setLoading(true);
     try {
       html2canvas(targetElement, { scale: 1 }).then((canvas) => {
-        const imgData = canvas.toDataURL("img/png", 0.7);
-        const componentWidth = pdf.internal.pageSize.getWidth();
-        const componentHeight = pdf.internal.pageSize.getHeight();
-        pdf.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+        const imgData = canvas.toDataURL("image/png", 0.7);
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        const desiredWidth = pageWidth * 0.5;
+        const desiredHeight = pageHeight * 0.5;
+
+        const x = (pageWidth - desiredWidth) / 2;
+        const y = (pageHeight - desiredHeight) / 2;
+
+        pdf.addImage(imgData, "PNG", x, y, desiredWidth, desiredHeight);
         pdf.save(`Invoice-to-${billTo}-from-${companyName}.pdf`);
       });
       dispatch(
@@ -140,33 +177,34 @@ const CreateInvoice = ({
               <h3 className="text-[20px] font-semibold">Invoice</h3>
             </div>
             <div className="flex justify-between items-center">
-              <div className="w-[30%]">
+              <div className="w-[30%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={invoiceNo}
                   type="number"
                   placeholder="Invoice No."
                   onChange={handleInvoiceNo}
-                  noBorder={true}
+                  noBorder={false}
                 />
               </div>
-              <div className="w-[48%]">
+              <div className="w-[48%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={companyName}
                   type="text"
                   placeholder="Your Company Name."
                   onChange={handleCompanyName}
-                  noBorder={true}
+                  noBorder={false}
                 />
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="w-[48%] ">
+              <div className="w-[48%] border-b border-[#e6e3e6]">
                 <DatePicker
                   required={true}
                   selectedDate={date}
                   onChange={handleDate}
+                  noBorder={false}
                 />
               </div>
             </div>
@@ -175,24 +213,25 @@ const CreateInvoice = ({
           <section className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <div className="w-[20%]">Bill to:</div>
-              <div className="w-[80%]">
+              <div className="w-[80%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={billTo}
                   type="text"
                   placeholder="Mr. John Doe."
                   onChange={handleBillTo}
-                  noBorder={true}
+                  noBorder={false}
                 />
               </div>
             </div>
             <div className="flex justify-between items-center">
               <div className="w-[20%]">Due date:</div>
-              <div className="w-[80%]">
+              <div className="w-[80%] border-b border-[#e6e3e6]">
                 <DatePicker
                   required={true}
                   selectedDate={dueDate}
                   onChange={handleDueDate}
+                  noBorder={false}
                 />
               </div>
             </div>
@@ -206,7 +245,7 @@ const CreateInvoice = ({
               <div className="w-[20%] text-center">Amount (₦)</div>
             </div>
             <div className="flex justify-between">
-              <div className="w-[50%] border border-[#e6e3e6]">
+              <div className="w-[50%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={description}
@@ -216,7 +255,7 @@ const CreateInvoice = ({
                   noBorder={false}
                 />
               </div>
-              <div className="w-[10%] border border-[#e6e3e6]">
+              <div className="w-[10%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={quantity}
@@ -226,7 +265,7 @@ const CreateInvoice = ({
                   noBorder={false}
                 />
               </div>
-              <div className="w-[20%] border border-[#e6e3e6]">
+              <div className="w-[20%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={rate}
@@ -236,7 +275,7 @@ const CreateInvoice = ({
                   noBorder={false}
                 />
               </div>
-              <div className="w-[20%] border border-[#e6e3e6]">
+              <div className="w-[20%] border-b border-[#e6e3e6]">
                 <CustomInput
                   required={true}
                   value={amount}
@@ -252,58 +291,77 @@ const CreateInvoice = ({
           <section className="flex justify-between">
             <div className="w-[48%]">
               <div className="">Note:</div>
-              <textarea value={note} onChange={handleNote}></textarea>
+              <textarea
+                placeholder="Write here"
+                value={note}
+                onChange={handleNote}
+                className="mt-4 border-b border-[#e6e3e6 text-sm focus:outline-none"
+                rows={5}
+                cols={25}
+              ></textarea>
             </div>
             <div className="w-[48%] flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <div className="w-[40%]">Subtotal:</div>
-                <div className="w-[60%]">
+                <div className="w-[40%] flex justify-between">
+                  <span>Subtotal:</span>
+                  <span>₦</span>
+                </div>
+                <div className="w-[60%] border-b border-[#e6e3e6]">
                   <CustomInput
                     required={true}
                     value={subtotal}
-                    type="text"
+                    type="number"
                     placeholder="0"
                     onChange={handleSubtotal}
-                    noBorder={true}
+                    noBorder={false}
                   />
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <div className="w-[40%]">Tax:</div>
-                <div className="w-[60%]">
+                <div className="w-[40%] flex justify-between">
+                  <span>Tax:</span>
+                  <span>₦</span>
+                </div>
+                <div className="w-[60%] border-b border-[#e6e3e6]">
                   <CustomInput
                     required={true}
                     value={tax}
-                    type="text"
+                    type="number"
                     placeholder="0"
                     onChange={handleTax}
-                    noBorder={true}
+                    noBorder={false}
                   />
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <div className="w-[40%]">Shipping:</div>
-                <div className="w-[60%]">
+                <div className="w-[40%] flex justify-between">
+                  <span>Shipping:</span>
+                  <span>₦</span>
+                </div>
+                <div className="w-[60%] border-b border-[#e6e3e6]">
                   <CustomInput
                     required={true}
                     value={shipping}
-                    type="text"
+                    type="number"
                     placeholder="0"
                     onChange={handleShipping}
-                    noBorder={true}
+                    noBorder={false}
                   />
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <div className="w-[40%]">Total:</div>
-                <div className="w-[60%]">
+                <div className="w-[40%] flex justify-between">
+                  <span>Total:</span>
+                  <span>₦</span>
+                </div>
+                <div className="w-[60%] border-b border-[#e6e3e6]">
                   <CustomInput
                     required={true}
                     value={total}
-                    type="text"
+                    type="number"
                     placeholder="0"
                     onChange={handleTotal}
-                    noBorder={true}
+                    noBorder={false}
                   />
                 </div>
               </div>

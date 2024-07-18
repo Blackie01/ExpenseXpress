@@ -19,7 +19,7 @@ const CustomInput: React.FC<CustomInputProps> = ({type, placeholder, onChange, n
         value={value}
         type={type}
         placeholder={placeholder}
-        className={`border ${noBorder ? "border-[#ebe8eb]" : "border-white"} rounded-custom h-[40px] px-2 w-full text-sm focus:outline-none`}
+        className={` ${noBorder ? "border border-[#ebe8eb]" : ""} rounded-custom h-[40px] px-2 w-full text-sm focus:outline-none`}
         onChange={handleChange}
       />
     )
