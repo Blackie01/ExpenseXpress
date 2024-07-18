@@ -18,7 +18,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 w-[25rem] p-4 items-center m-auto">
+    <div className="flex flex-col gap-4 w-[25rem] max-[462px]:w-[90%] p-4 items-center m-auto">
       <h3 className="text-pink font-semibold text-[20px]">ExpenseXpress</h3>
       <p>Gain Access</p>
 
