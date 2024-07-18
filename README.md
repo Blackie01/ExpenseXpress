@@ -2,7 +2,7 @@
 ExpenseXpress - An expense tracker and invoice generator
 
 ## Live Link
-https://expense-xpress.vercel.app/dashboard
+https://expense-xpress.vercel.app/
 
 ## Table of Contents
 * Introduction
