@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+    
       animation: {
         rotation: 'rotation 1s linear infinite',
       },

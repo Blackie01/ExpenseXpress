@@ -18,7 +18,7 @@ const Modal = ({ openModal, setOpenModal, children, width }: ModalProps) => {
     >
       <div
         className={`absolute top-[50%] left-[50%] -translate-y-2/4 -translate-x-2/4 gap-8 ${
-          width ? `w-[${width}]` : "w-1/3 min-w-[33.9rem]"
+          width ? `w-[${width}]` : "w-1/3 md:w-[33.9rem] w-[90%]"
         } rounded-custom bg-white border border-grey400 p-6 shadow-dialogShadow`}
       >
         {children}

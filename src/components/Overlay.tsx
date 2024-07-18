@@ -17,7 +17,7 @@ const Overlay = ({
 
   const overlay = `fixed w-full h-full top-0 right-0 left-0 bottom-0 ${
     darkened && "bg-[#00000040]"
-  } z-10 cursor-pointer`;
+  } z-40 cursor-pointer`;
 
   return (
     <div>

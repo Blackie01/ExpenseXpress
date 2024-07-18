@@ -73,7 +73,7 @@ const TransactionsPage: React.FC = () => {
   return (
     <section>
       <h3 className="text-[24px] text-black">Transactions</h3>
-      <div className="flex gap-2 mt-8 mb-12">
+      <div className="flex gap-2 mt-8 mb-12 max-[791px]:flex-wrap max-[591px]:grid">
         {expenseSummary &&
           expenseSummary.map((demo, index) => (
             <div key={index}>
@@ -82,7 +82,7 @@ const TransactionsPage: React.FC = () => {
           ))}
       </div>
       <hr />
-      <div className="mt-12 flex justify-between items-center">
+      <div className="mt-12 flex justify-between items-center max-[500px]:flex-col max-[500px]:items-start max-[500px]:gap-4">
         <div className="flex text-sm">
           <div
             onClick={handleViewAll}
@@ -126,15 +126,20 @@ const TransactionsPage: React.FC = () => {
         </div>
       </div>
       <div className="mt-4 w-full min-h-[50%] border border-[#ebe8eb] rounded-custom flex flex-col p-4">
-        <div className="w-full flex justify-between mb-8">
-          <h3 className="font-semibold text-[20px] text-black text-opacity-75">
+        <div className="w-full flex justify-between items-center mb-8">
+          <h3 className="font-semibold text-[20px] text-black text-opacity-75 max-[385px]:text-[18px]">
             {tableTitle}
           </h3>
-          <ActionButton
-            text="Add transaction"
-            bgColor="black"
-            onClick={handleNewEntry}
-          />
+          <div className="block max-[470px]:hidden">
+            <ActionButton
+              text="Add transaction"
+              bgColor="black"
+              onClick={handleNewEntry}
+            />
+          </div>
+          <div className="hidden max-[470px]:block">
+            <ActionButton text="Add" bgColor="black" onClick={handleNewEntry} />
+          </div>
         </div>
         {countTransactionEntries > 0 ? (
           <Transactions

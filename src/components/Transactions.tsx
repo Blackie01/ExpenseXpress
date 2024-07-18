@@ -44,7 +44,7 @@ const Transactions: React.FC<SliceProp> = ({
       ? [...dataReceived].slice(-sliceCount).reverse()
       : [...dataReceived].reverse();
     setData(newData);
-  }, [ sliceCount]);
+  }, [sliceCount]);
 
   useEffect(() => {
     if (filterByType === true) {
@@ -80,21 +80,28 @@ const Transactions: React.FC<SliceProp> = ({
         data?.map((item) => (
           <div
             key={item.id}
-            className="flex justify-between items-center text-sm py-2 px-4 rounded-custom hover:border-black border border-white transition-all duration-200 ease-in-out"
+            className="max-[872px]:flex-wrap max-[460px]:flex-col max-[872px] max-[872px]:gap-y-2 flex justify-between min-[461px]:items-center text-sm py-2 px-4 rounded-custom hover:border-black border border-white max-[872px]:border-[#ebe8eb] transition-all duration-200 ease-in-out"
           >
-            <div
-              className={`h-[10px] w-[10px] ${
-                item.type ? "bg-[green]" : "bg-[red]"
-              } rounded-[50%]`}
-            ></div>
-            <p className="w-[40%] text-left">{item.title}</p>
-            <p className="w-[20%] text-opacity-50 text-black">
+            <div className="min-[873px]:w-[40%] max-[872px]:w-[60%]  text-left flex items-center gap-4 max-[460px]:w-[100%]">
+              <div className="w-max h-max">
+                <div
+                  className={`h-[9.6px] w-[9.6px] ${
+                    item.type ? "bg-[green]" : "bg-[red]"
+                  } rounded-[50%]`}
+                ></div>
+              </div>
+
+              {item.title}
+            </div>
+            <p className="min-[873px]:w-[10%] max-[872px]:w-[30%] text-opacity-50 text-black max-[872px]:text-right max-[460px]:w-[100%] max-[460px]:text-left max-[460px]:pl-[1.6rem]">
               {item.category}
             </p>
-            <p className="w-[20%]">{item.date}</p>
-            <div className="w-[12%] flex font-semibold">
+            <p className="min-[873px]:w-[15%] max-[872px]:w-[60%] pl-[1.6rem] max-[460px]:w-[100%]">
+              {item.date}
+            </p>
+            <div className=" min-[873px]:w-[17%] max-[872px]:w-[30%]  flex font-semibold max-[872px]:justify-end max-[460px]:w-[100%] max-[460px]:justify-start max-[460px]:pl-[1.6rem] max-[460px]:text-opacity-50 text-black">
               <p className="w-[1rem]">{item.type ? "+" : "-"}</p>
-              <p>{item.amount}</p>
+              <p>₦{item.amount}</p>
             </div>
           </div>
         ))}

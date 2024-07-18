@@ -2,18 +2,23 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import CustomInput from "./CustomInput";
+import { useDispatch } from "react-redux";
+import { setUsername } from "@/redux/authSlice";
+import { RootState } from "@/redux/store";
 
 const Login: React.FC = () => {
 
   const router = useRouter()
+  const dispatch = useDispatch()
 
-  const [inputValue, setInputValue] = useState<string>()
+  const [inputValue, setInputValue] = useState<string | undefined>()
   const handleInputValue = (value: string) => {
     setInputValue(value)
   }
   
   const goToDashboard = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    dispatch(setUsername({username: inputValue}))
     router.push('/dashboard')
   }
 

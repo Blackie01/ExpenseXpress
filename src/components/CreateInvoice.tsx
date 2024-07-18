@@ -282,8 +282,8 @@ const CreateInvoice = ({
             </div>
           </section>
           <hr />
-          <section className="flex justify-between">
-            <div className="w-[48%]">
+          <section className="flex justify-between max-[530px]:flex-col">
+            <div className="w-[48%] max-[530px]:w-full">
               <div className="">Note:</div>
               <textarea
                 placeholder="Write here"
@@ -294,7 +294,7 @@ const CreateInvoice = ({
                 cols={25}
               ></textarea>
             </div>
-            <div className="w-[48%] flex flex-col gap-2">
+            <div className="w-[48%] max-[530px]:w-full flex flex-col gap-2">
               <div className="flex justify-between items-center">
                 <div className="w-[40%] flex justify-between">
                   <span>Subtotal:</span>

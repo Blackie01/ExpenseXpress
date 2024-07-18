@@ -14,7 +14,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['transactionEntries', 'snackBar'],
+  whitelist: ['transactionEntries', 'snackBar', 'auth'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

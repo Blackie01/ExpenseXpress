@@ -61,6 +61,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface MenuProps {
   name: string;
@@ -75,6 +77,7 @@ const menu: MenuProps[] = [
 
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
+  const username = useSelector((state: RootState) => state.auth.username)
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -82,7 +85,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <section className="z-30 lg:bg-[#FAF9FA] h-full">
+    <section className="z-30 lg:bg-[#FAF9FA] h-[100vh]">
       <div className="block lg:hidden p-4 flex gap-8 fixed top-[0.2rem] left-[1rem] items-center">
         <button onClick={toggleDrawer} className="flex flex-col gap-1">
           <span className="h-[2px] w-[20px] bg-black"></span>
@@ -93,7 +96,7 @@ const Sidebar: React.FC = () => {
       </div>
 
       <div
-        className={`fixed inset-0  transition-transform duration-300 transform bg-black bg-opacity-50 ${
+        className={`fixed inset-0 h-full transition-transform duration-300 transform bg-black bg-opacity-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static lg:bg-transparent lg:flex lg:flex-col lg:gap-12 lg:bg-[#FAF9FA]`}
         onClick={toggleDrawer}
@@ -124,7 +127,11 @@ const Sidebar: React.FC = () => {
               </Link>
             ))}
           </div>
+          <div className="sm:hidden block absolute left-[1rem] bottom-[2rem]">
+          Hola, {username || 'user'}.
+        </div>
         </section>
+       
       </div>
     </section>
   );

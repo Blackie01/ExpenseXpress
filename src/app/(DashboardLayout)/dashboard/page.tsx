@@ -42,20 +42,22 @@ const Dashboard: React.FC = () => {
   return (
     <section className="h-full">
       <div>
-        <h3 className="text-[24px] text-black text-opacity-50">Your Balance</h3>
-        <h3 className="font-semibold text-[40px] text-opacity-50">
+        <h3 className="lg:text-[24px] text-[16px] text-black text-opacity-50">
+          Your Balance
+        </h3>
+        <h3 className="font-semibold lg:text-[35px] text-[20px]">
           ₦{balance || 0}
         </h3>
       </div>
 
-      <div className="flex gap-8 mt-8 mb-12">
+      <div className="flex gap-8 mt-8 mb-12 max-[573px]:gap-4 max-[372px]:flex-col">
         {cardContent.map((item, index) => (
           <div
             key={index}
-            className={` py-8 px-16 rounded-custom  ${
+            className={`py-8 px-16  rounded-custom max-[573px]:px-[1rem]  max-[414px]:w-[50%] max-[395px]:text-sm max-[372px]:w-[100%] max-[372px]:py-4 ${
               item.for === "Income"
-                ? "bg-black text-white"
-                : "bg-white text-black border border-[#ebe8eb]"
+                ? "bg-black text-white max-[573px]:w-[45%]  "
+                : "bg-white text-black border border-[#ebe8eb] max-[573px]:w-[55%]"
             }`}
           >
             <p
@@ -71,15 +73,20 @@ const Dashboard: React.FC = () => {
       </div>
       <hr />
       <div className="mt-12 w-full min-h-[50%] border border-[#ebe8eb] rounded-custom flex flex-col p-4">
-        <div className="w-full flex justify-between mb-8">
-          <h3 className="font-semibold text-[20px] text-black text-opacity-75">
+        <div className="w-full flex justify-between items-center mb-8">
+          <h3 className="font-semibold text-[20px] max-[555px]:text-[16px] text-black text-opacity-75">
             Recent Transactions
           </h3>
-          <ActionButton
-            text="Add transaction"
-            bgColor="black"
-            onClick={handleNewEntry}
-          />
+          <div className="block max-[450px]:hidden">
+            <ActionButton
+              text="Add transaction"
+              bgColor="black"
+              onClick={handleNewEntry}
+            />
+          </div>
+          <div className="hidden max-[450px]:block">
+            <ActionButton text="Add" bgColor="black" onClick={handleNewEntry} />
+          </div>
         </div>
         {countTransactionEntries > 0 ? (
           <Transactions sliceCount={5} />
