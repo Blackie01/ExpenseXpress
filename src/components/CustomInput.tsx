@@ -1,6 +1,7 @@
 import React from "react";
 
 interface CustomInputProps {
+    'data-testid'?: string;
     type: string;
     placeholder?: string;
     onChange: (value: any) => void;
@@ -8,13 +9,14 @@ interface CustomInputProps {
     required?: boolean;
     value: any
 }
-const CustomInput: React.FC<CustomInputProps> = ({type, placeholder, onChange, noBorder, required, value}) => {
+const CustomInput: React.FC<CustomInputProps> = ({type, placeholder, onChange, noBorder, required, value, 'data-testid': dataTestId,}) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value)
     }
     return(
         <input
+        data-testid={dataTestId}
         required={required}
         value={value}
         type={type}
