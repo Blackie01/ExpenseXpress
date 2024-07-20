@@ -119,42 +119,6 @@ describe("Transactions Component", () => {
     expect(screen.getByText("Groceries")).toBeInTheDocument();
   });
 
-//   test("slices transactions correctly", () => {
-//     render(
-//       <Provider store={store}>
-//         <Transactions sliceCount={1} filterByType={null}/>
-//       </Provider>
-//     );
-
-//     expect(screen.getByText("Groceries")).toBeInTheDocument();
-//     expect(screen.getByText("Rent")).toBeInTheDocument();
-//     expect(screen.queryByText("Salary")).not.toBeInTheDocument();
-//   });
-
-//   test.only("filters transactions by type (income)", () => {
-//     render(
-//       <Provider store={store}>
-//         <Transactions filterByType={true} />
-//       </Provider>
-//     );
-
-//     expect(screen.getByText("Salary")).toBeInTheDocument();
-//     expect(screen.queryByText("Rent")).not.toBeInTheDocument();
-//     expect(screen.queryByText("Groceries")).not.toBeInTheDocument();
-//   });
-
-//   test("filters transactions by type (expense)", () => {
-//     render(
-//       <Provider store={store}>
-//         <Transactions filterByType={false} />
-//       </Provider>
-//     );
-
-//     expect(screen.getByText("Salary")).not.toBeInTheDocument();
-//     expect(screen.getByText("Rent")).toBeInTheDocument();
-//     expect(screen.getByText("Groceries")).toBeInTheDocument();
-//   });
-
   test("filters transactions by category", () => {
     render(
       <Provider store={store}>
