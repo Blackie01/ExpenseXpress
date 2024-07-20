@@ -32,13 +32,6 @@ const Transactions: React.FC<SliceProp> = ({
 
   const [data, setData] = useState<DataProps[]>();
 
-  // useEffect(() => {
-  //   const newData = sliceCount
-  //     ? [...dataReceived].slice(-sliceCount).reverse()
-  //     : [...dataReceived].reverse();
-  //   setData(newData);
-  // }, [dataReceived, filterByType === null]);
-
   useEffect(() => {
     const newData = sliceCount
       ? [...dataReceived].slice(-sliceCount).reverse()
