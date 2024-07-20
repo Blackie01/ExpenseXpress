@@ -10,14 +10,13 @@ import { setTransactionEntries } from "@/redux/transactionEntriesSlice";
 import { setSnackBar } from "@/redux/snackBarSlice";
 
 interface FormProps {
-  "data-testid"?: string;
   openForm: boolean;
   setOpenForm: any;
 }
 
 // (value: boolean) => void
 
-const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormProps) => {
+const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -122,14 +121,15 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
 
   return (
     <Modal openModal={openForm} setOpenModal={setOpenForm}>
-      <section data-testid={dataTestId} className="flex flex-col gap-8 text-sm">
+      <section className="flex flex-col gap-8 text-sm">
         <div>
-          <h3 className="text-[20px] font-semibold">
+          <h3 data-testid="dialogTitle" className="text-[20px] font-semibold">
             {entryType ? "Income entry" : "Expense entry"}
           </h3>
         </div>
         <div className="flex w-full">
           <div
+            data-testid="incomeButton"
             onClick={() => handleEntryType(true)}
             className={`${
               entryType ? "bg-black text-white" : "bg-[#ebe8eb] text-black"
@@ -138,6 +138,7 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
             Income
           </div>
           <div
+            data-testid="expenseButton"
             onClick={() => handleEntryType(false)}
             className={`${
               entryType ? "bg-[#ebe8eb] text-black " : "bg-black text-white"
@@ -148,8 +149,9 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
         </div>
         <form ref={formRef} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <label>Description</label>
+            <label data-testid="descriptionLabel">Description</label>
             <CustomInput
+              data-testid="descriptionInput"
               required={true}
               value={description}
               type="text"
@@ -161,8 +163,9 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label>Category</label>
+            <label data-testid="categoryLabel">Category</label>
             <select
+              data-testid="categorySelect"
               onChange={handleCategory}
               className="border border-[#ebe8eb] rounded-custom h-[40px] px-2 w-full text-sm focus:outline-none"
               //   value={category || (entryType ? 'Income' : "Utilities")}
@@ -180,8 +183,9 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
             </select>
           </div>
           <div className="flex flex-col gap-2">
-            <label>Date</label>
+            <label data-testid="dateLabel">Date</label>
             <DatePicker
+              data-testid="datePicker"
               required={true}
               selectedDate={date}
               onChange={handleDate}
@@ -189,8 +193,9 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label>Amount (₦)</label>
+            <label data-testid="amountLabel">Amount (₦)</label>
             <CustomInput
+              data-testid="amountInput"
               required={true}
               value={amount}
               type="number"
@@ -200,6 +205,7 @@ const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormP
             />
           </div>
           <ActionButton
+            data-testid="saveTransactionButton"
             text="Add transaction"
             bgColor="black"
             onClick={handleSave}
