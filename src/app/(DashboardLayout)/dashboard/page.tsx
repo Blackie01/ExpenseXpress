@@ -116,7 +116,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       <EntryForm
-      data-testid="entryForm"
+      
       openForm={openEntryForm}
       setOpenForm={setOpenEntryForm}
     />
