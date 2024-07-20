@@ -34,23 +34,34 @@ const Dashboard: React.FC = () => {
   const countTransactionEntries: number = useSelector(
     (state: RootState) => state.transactionEntries.entries.length
   );
+
   const [openEntryForm, setOpenEntryForm] = useState<boolean>(false);
 
   const handleNewEntry = () => {
     setOpenEntryForm(!openEntryForm);
   };
+
   return (
     <section className="h-full">
       <div>
-        <h3 className="lg:text-[24px] text-[16px] text-black text-opacity-50">
+        <h3
+          data-testid="balance"
+          className="lg:text-[24px] text-[16px] text-black text-opacity-50"
+        >
           Your Balance
         </h3>
-        <h3 className="font-semibold lg:text-[35px] text-[20px]">
+        <h3
+          data-testid="balanceAmount"
+          className="font-semibold lg:text-[35px] text-[20px]"
+        >
           ₦{balance || 0}
         </h3>
       </div>
 
-      <div className="flex gap-8 mt-8 mb-12 max-[573px]:gap-4 max-[372px]:flex-col">
+      <div
+        data-testid="incomeExpense"
+        className="flex gap-8 mt-8 mb-12 max-[573px]:gap-4 max-[372px]:flex-col"
+      >
         {cardContent.map((item, index) => (
           <div
             key={index}
@@ -74,18 +85,27 @@ const Dashboard: React.FC = () => {
       <hr />
       <div className="mt-12 w-full min-h-[50%] border border-[#ebe8eb] rounded-custom flex flex-col p-4">
         <div className="w-full flex justify-between items-center mb-8">
-          <h3 className="font-semibold text-[20px] max-[555px]:text-[16px] text-black text-opacity-75">
+          <h3
+            data-testid="tableTitle"
+            className="font-semibold text-[20px] max-[555px]:text-[16px] text-black text-opacity-75"
+          >
             Recent Transactions
           </h3>
           <div className="block max-[450px]:hidden">
             <ActionButton
+              data-testid="desktopButton"
               text="Add transaction"
               bgColor="black"
               onClick={handleNewEntry}
             />
           </div>
           <div className="hidden max-[450px]:block">
-            <ActionButton text="Add" bgColor="black" onClick={handleNewEntry} />
+            <ActionButton
+              data-testid="mobileButton"
+              text="Add"
+              bgColor="black"
+              onClick={handleNewEntry}
+            />
           </div>
         </div>
         {countTransactionEntries > 0 ? (
@@ -95,7 +115,12 @@ const Dashboard: React.FC = () => {
         )}
       </div>
 
-      <EntryForm openForm={openEntryForm} setOpenForm={setOpenEntryForm} />
+      <EntryForm
+      data-testid="entryForm"
+      openForm={openEntryForm}
+      setOpenForm={setOpenEntryForm}
+    />
+      
     </section>
   );
 };

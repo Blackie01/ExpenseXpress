@@ -3,6 +3,7 @@ import {
   screen,
   fireEvent,
   RenderResult,
+  cleanup,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Login from "../../src/components/Login";
@@ -20,6 +21,10 @@ describe("Test: Login component", () => {
         <Login />
       </Provider>
     );
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   describe("Rendering of login component", () => {
