@@ -10,11 +10,14 @@ import { setTransactionEntries } from "@/redux/transactionEntriesSlice";
 import { setSnackBar } from "@/redux/snackBarSlice";
 
 interface FormProps {
+  "data-testid"?: string;
   openForm: boolean;
-  setOpenForm: (value: boolean) => void;
+  setOpenForm: any;
 }
 
-const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
+// (value: boolean) => void
+
+const EntryForm = ({ openForm, setOpenForm,  "data-testid": dataTestId, }: FormProps) => {
   const dispatch = useDispatch();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -119,7 +122,7 @@ const EntryForm = ({ openForm, setOpenForm }: FormProps) => {
 
   return (
     <Modal openModal={openForm} setOpenModal={setOpenForm}>
-      <section className="flex flex-col gap-8 text-sm">
+      <section data-testid={dataTestId} className="flex flex-col gap-8 text-sm">
         <div>
           <h3 className="text-[20px] font-semibold">
             {entryType ? "Income entry" : "Expense entry"}
