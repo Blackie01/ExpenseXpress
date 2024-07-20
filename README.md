@@ -12,13 +12,10 @@ https://expense-xpress.vercel.app/
 2. Install Dependencies
 3. Set Up Environment Variables
 4. Run the Application
-* Application Structure
 * Features
-* Expense and Income Tracking
-* Invoice Generation
+  1. Expense and Income Tracking
+  2. Invoice Generation
 * Running Tests
-* Troubleshooting
-* Contributing
 * License
 
 ## Introduction
@@ -76,6 +73,25 @@ npm run dev
 ```
 
 Open your browser and navigate to http://localhost:3000 to see the application in action.
+
+## Feature
+There are two major features of the application
+## 1. Expense and Income tracking
+This allows users to make entries of their day-to-day expenses and automatically calculates where the bulk of their money goes, as well as their balance
+## 2. Invoice generator
+This allows users to create invoices they can download as pdf. 
+
+## Running tests
+The test suite is written in Jest. 
+To run the tests, first set up Jest locally: 
+```bash
+npm install -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
+```
+
+then, cd to the project folder, and run 
+```bash
+npm run test
+```
 
 ## License
 This project is licensed under the MIT License. 
